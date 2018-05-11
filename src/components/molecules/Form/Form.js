@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Input from 'muicss/lib/react/input';
+import TextArea from 'muicss/lib/react/textarea';
 import { connect } from 'react-redux';
 import { addQuestion } from '../../../reducers/questions';
 import './Form.css';
@@ -32,53 +34,60 @@ const Form = ({ dispatch }) => {
         dispatch(addQuestion(obj));
         askee.value = '';
         question.value = '';
+        reject.checked = false;
+        accept.checked = false;
       }}
     >
-      <div
-        className="formQuestions"
-      >
-        <label htmlFor="askee">Person Asked:
-          <input
-            id="askee"
-            type="text"
-            name="Askee"
-            ref={(node) => {
-              askee = node;
-            }}
-          />
-        </label>
-        <label htmlFor="question">Question:
-          <input
-            id="question"
-            type="text"
-            name="Question"
-            ref={(node) => {
-                question = node;
-              }}
-          />
-        </label>
-        <label htmlFor="rejected">Reject
-          <input
-            id="rejected"
-            type="radio"
-            name="Response"
-            value="Rejected"
-            ref={(node) => {
-                  reject = node;
-                }}
-          />
-        </label>
-        <label htmlFor="accepted">Accept
-          <input
-            id="accepted"
-            type="radio"
-            name="Response"
-            value="Accepted"
-            ref={(node) => {
-                    accept = node;
+      <div className="formQuestions">
+        <Input
+          className="questoin-person"
+          label="Person Asked:"
+          id="askee"
+          type="text"
+          name="Askee"
+          floatingLabel
+          ref={(node) => {
+            askee = node.controlEl;
+          }}
+        />
+        <div>
+          <label htmlFor="rejected">Reject
+            <input
+              id="rejected"
+              type="radio"
+              name="Response"
+              value="Rejected"
+              required="required"
+              ref={(node) => {
+                    reject = node;
                   }}
-          />
-        </label>
+            />
+          </label>
+          <label htmlFor="accepted">Accept
+            <input
+              id="accepted"
+              type="radio"
+              name="Response"
+              value="Accepted"
+              required="required"
+              ref={(node) => {
+                      accept = node;
+                    }}
+            />
+          </label>
+        </div>
+        <TextArea
+          className="questoin-question"
+          label="Question:"
+          floatingLabel
+          id="question"
+          type="text"
+          name="Question"
+          rows="10"
+          ref={(node) => {
+            question = node.controlEl;
+          }}
+        />
       </div>
       <div className="formButton">
         <button type="submit">

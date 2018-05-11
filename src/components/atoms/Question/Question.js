@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Question.css';
 
 const Question = ({
   questionCounter, person, score, question, response, timestamp,
 }) => (
-  <li>
+  <li className="question">
     <h2> Question #{questionCounter} </h2>
     <h4> Person Asked: {person}<br />
     Question: {question}<br />

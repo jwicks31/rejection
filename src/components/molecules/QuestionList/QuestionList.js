@@ -6,7 +6,7 @@ import Question from '../../atoms/Question/Question';
 import './QuestionList.css';
 
 const QuestionList = ({ questions }) => (
-  <ul>
+  <ul className="question-list">
     {questions.map((question, index) =>
       (<Question
         key={question.id}
