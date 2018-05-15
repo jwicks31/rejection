@@ -1,30 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import throttle from 'lodash/throttle';
-
-import App from './App';
-import { reducer as Questions } from './reducers/questions';
-import { loadState, saveState } from './reducers/local-state';
+import Root from './components/root';
+import configureStore from './store';
 // import registerServiceWorker from './registerServiceWorker';
 
-import './index.css';
-
-const persistedState = loadState();
-const store = createStore(
-  Questions,
-  persistedState,
-);
-
-store.subscribe(throttle(() => {
-  saveState(store.getState());
-}, 1000));
+const store = configureStore();
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Root store={store} />,
   document.getElementById('root'),
 );
 // registerServiceWorker();

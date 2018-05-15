@@ -1,7 +1,7 @@
 import React from 'react';
-import QuestonList from './components/molecules/QuestionList/QuestionList';
-import Form from './components/molecules/Form/Form';
-import Score from './components/molecules/Score/Score';
+import QuestonList from './molecules/QuestionList/QuestionList';
+import Form from './molecules/Form/Form';
+import Score from './molecules/Score/Score';
 
 import './App.css';
 

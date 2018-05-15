@@ -1,4 +1,22 @@
 import { createStore } from 'redux';
-import { reducer as Questions } from './reducers/questions';
+import throttle from 'lodash/throttle';
 
-export const store = createStore(Questions);
+import { reducer as Questions } from './reducers/questions';
+import { loadState, saveState } from './reducers/local-state';
+
+import './index.css';
+
+const configureStore = () => {
+  const persistedState = loadState();
+  const store = createStore(
+    Questions,
+    persistedState,
+  );
+
+  store.subscribe(throttle(() => {
+    saveState(store.getState());
+  }, 1000));
+  return store;
+};
+
+export default configureStore;
