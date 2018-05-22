@@ -32,9 +32,7 @@ export const addQuestion = ({
   },
 });
 
-export const removeQuestion = ({
-  id = 0,
-} = {}) => ({
+export const removeQuestion = ({ id = 0 } = {}) => ({
   type: REMOVE_QUESTION,
   payload: id,
 });

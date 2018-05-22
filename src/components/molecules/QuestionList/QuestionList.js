@@ -22,6 +22,7 @@ const mapStateToProps = state => ({
 
 QuestionList.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
     person: PropTypes.string.isRequired,
     score: PropTypes.number.isRequired,
     question: PropTypes.string.isRequired,
