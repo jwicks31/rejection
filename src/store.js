@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 import throttle from 'lodash/throttle';
 
 import { reducer as Questions } from './reducers/questions';
-import { loadState, saveState } from './reducers/local-state';
+import { loadState, saveState } from './local-state';
 
 import './index.css';
 
