@@ -17,6 +17,7 @@ const Form = ({ onSubmit, onChange }) => (
           onChange={onChange}
           id="askee"
           type="text"
+          required
         />
       </label>
       <div>
@@ -47,6 +48,7 @@ const Form = ({ onSubmit, onChange }) => (
           label="Question:"
           id="question"
           type="text"
+          required
         />
       </label>
     </div>
