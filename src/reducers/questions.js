@@ -19,7 +19,6 @@ export const addQuestion = ({
   person = 'anonymous',
   question = 'no question',
   score = UNANSWERED,
-  response = 'UNANSWERED',
   timestamp = time(),
 } = {}) => ({
   type: ADD_QUESTION,
@@ -28,7 +27,7 @@ export const addQuestion = ({
     person,
     question,
     score,
-    response,
+    response: score === 10 ? 'REJECTED' : score === 1 ? 'ACCEPTED' : 'UNANSWERED',
     timestamp,
   },
 });

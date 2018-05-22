@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { addQuestion } from '../../../reducers/questions';
 import './Form.css';
 
-const Form = ({ onSubmit }) => (
+const Form = ({ onSubmit, onChange }) => (
   <form
     className="form-container"
     id="form"
@@ -14,6 +14,7 @@ const Form = ({ onSubmit }) => (
     <div className="formQuestions">
       <label htmlFor="askee">Person Asked:
         <input
+          onChange={onChange}
           id="askee"
           type="text"
         />
@@ -21,6 +22,7 @@ const Form = ({ onSubmit }) => (
       <div>
         <label htmlFor="rejected">Reject
           <input
+            onChange={onChange}
             id="rejected"
             type="radio"
             name="Response"
@@ -30,6 +32,7 @@ const Form = ({ onSubmit }) => (
         </label>
         <label htmlFor="accepted">Accept
           <input
+            onChange={onChange}
             id="accepted"
             type="radio"
             name="Response"
@@ -40,6 +43,7 @@ const Form = ({ onSubmit }) => (
       </div>
       <label htmlFor="question">Question:
         <input
+          onChange={onChange}
           label="Question:"
           id="question"
           type="text"
@@ -54,16 +58,38 @@ const Form = ({ onSubmit }) => (
   </form>
 );
 
+const obj = {
+  person: 'Anonymous',
+  question: 'No Question',
+  score: 0,
+};
+
+const onChange = (e) => {
+  switch (e.target.id) {
+    case 'askee': obj.person = e.target.value;
+      break;
+    case 'question': obj.question = e.target.value;
+      break;
+    case 'rejected': obj.score = 10;
+      break;
+    case 'accepted': obj.score = 1;
+      break;
+    default:
+  }
+};
+
 const mapDispatchToProps = dispatch => ({
   onSubmit: (e) => {
     e.preventDefault();
-    console.log(e.target);
-    dispatch(addQuestion());
+    dispatch(addQuestion(obj));
+    e.target.reset();
   },
+  onChange,
 });
 
 Form.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 const FormWrapper = connect(undefined, mapDispatchToProps)(Form);
