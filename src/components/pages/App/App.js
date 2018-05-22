@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import QuestonList from '../../molecules/QuestionList/QuestionList';
 import Form from '../../molecules/Form/Form';
 import Score from '../../molecules/Score/Score';
-
 import './App.css';
 
 const App = () => (

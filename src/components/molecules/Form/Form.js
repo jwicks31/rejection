@@ -1,63 +1,80 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
+import Toggle from '../../containers/Toggle/Toggle';
+import Switch from '../../atoms/Switch/Switch';
 import { addQuestion } from '../../../reducers/questions';
 import './Form.css';
 
 const Form = ({ onSubmit, onChange }) => (
-  <form
-    className="form-container"
-    id="form"
-    onSubmit={onSubmit}
-  >
-    <div className="formQuestions">
-      <label htmlFor="askee">Person Asked:
-        <input
-          onChange={onChange}
-          id="askee"
-          type="text"
-          required
-        />
-      </label>
-      <div>
-        <label htmlFor="rejected">Reject
+  <div>
+    <div className="ToggleCont">
+      <Toggle >
+        {({ on, toggle }) => (
+          <div>
+            {on ? 'Showing Rejected' : 'Showing Accepted'}
+            <Switch on={on} onClick={toggle} />
+            <hr />
+            {/* <button aria-label="custom-button" onClick={toggle}>
+              {on ? 'Rejected' : 'Accepted'}
+            </button> */}
+          </div>
+        )}
+      </Toggle>
+    </div>
+    <form
+      className="form-container"
+      id="form"
+      onSubmit={onSubmit}
+    >
+      <div className="formQuestions">
+        <label htmlFor="askee">Person Asked:
           <input
             onChange={onChange}
-            id="rejected"
-            type="radio"
-            name="Response"
-            value="Rejected"
-            required="required"
+            id="askee"
+            type="text"
+            required
           />
         </label>
-        <label htmlFor="accepted">Accept
+        <div>
+          <label htmlFor="rejected">Reject
+            <input
+              onChange={onChange}
+              id="rejected"
+              type="radio"
+              name="Response"
+              value="Rejected"
+              required="required"
+            />
+          </label>
+          <label htmlFor="accepted">Accept
+            <input
+              onChange={onChange}
+              id="accepted"
+              type="radio"
+              name="Response"
+              value="Accepted"
+              required="required"
+            />
+          </label>
+        </div>
+        <label htmlFor="question">Question:
           <input
             onChange={onChange}
-            id="accepted"
-            type="radio"
-            name="Response"
-            value="Accepted"
-            required="required"
+            label="Question:"
+            id="question"
+            type="text"
+            required
           />
         </label>
       </div>
-      <label htmlFor="question">Question:
-        <input
-          onChange={onChange}
-          label="Question:"
-          id="question"
-          type="text"
-          required
-        />
-      </label>
-    </div>
-    <div className="formButton">
-      <button type="submit">
-    Submit
-      </button>
-    </div>
-  </form>
+      <div className="formButton">
+        <button type="submit">
+      Submit
+        </button>
+      </div>
+    </form>
+  </div>
 );
 
 const obj = {
