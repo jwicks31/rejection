@@ -21,14 +21,13 @@ const mapStateToProps = state => ({
 });
 
 QuestionList.propTypes = {
-  questions: PropTypes.shape({
-    questionCounter: PropTypes.number.isRequired,
+  questions: PropTypes.arrayOf(PropTypes.shape({
     person: PropTypes.string.isRequired,
     score: PropTypes.number.isRequired,
     question: PropTypes.string.isRequired,
     response: PropTypes.string.isRequired,
     timestamp: PropTypes.string.isRequired,
-  }).isRequired,
+  })).isRequired,
 };
 
 export default connect(mapStateToProps)(QuestionList);

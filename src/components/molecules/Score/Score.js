@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import getScore from '../../../reducers/get-score';
+import { getScore } from '../../../reducers/questions';
 
 import './Score.css';
 
@@ -14,14 +14,13 @@ const mapStateToProps = state => ({
 });
 
 Score.propTypes = {
-  questions: PropTypes.shape({
-    questionCounter: PropTypes.number.isRequired,
+  questions: PropTypes.arrayOf(PropTypes.shape({
     person: PropTypes.string.isRequired,
     score: PropTypes.number.isRequired,
     question: PropTypes.string.isRequired,
     response: PropTypes.string.isRequired,
     timestamp: PropTypes.string.isRequired,
-  }).isRequired,
+  })).isRequired,
 };
 
 export default connect(mapStateToProps)(Score);

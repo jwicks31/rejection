@@ -48,3 +48,5 @@ export const reducer = (state = initialState, action = {}) => {
     default: return state;
   }
 };
+
+export const getScore = store => store.reduce((a, c) => a + c.score, 0);

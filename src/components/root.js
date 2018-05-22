@@ -1,8 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Router, Route } from 'react-router';
-
 import App from './pages/App/App';
 
 const Root = ({ store }) => (
@@ -12,7 +10,13 @@ const Root = ({ store }) => (
 );
 
 Root.propTypes = {
-  store: PropTypes.string.isRequired,
+  store: PropTypes.shape({
+    person: PropTypes.string,
+    score: PropTypes.number,
+    question: PropTypes.string,
+    response: PropTypes.string,
+    timestamp: PropTypes.string,
+  }).isRequired,
 };
 
 export default Root;
